@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="A romantic Valentine's Day surprise — pop the balloons to unlock our memories 💕" />
+  <title>💌 Be My Valentine</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>" />
+</head>
+
+<body>
+
+  <!-- ═══ Preloader ═══ -->
+  <div class="preloader" id="preloader">
+    <span class="preloader-heart">💕</span>
+    <span class="preloader-text">Loading love...</span>
+  </div>
+
+  <!-- ═══ Animated Background ═══ -->
+  <div class="bg-gradient"></div>
+
+  <!-- ═══ Heart Particles ═══ -->
+  <div class="heart-particles"></div>
+
+  <!-- ═══ Confetti Container ═══ -->
+  <div class="confetti-container"></div>
+
+  <!-- ═══ Heart Explosion Container ═══ -->
+  <div class="heart-explosion"></div>
+
+  <!-- ═══ Landing Screen ═══ -->
+  <div class="screen" id="landing-screen">
+    <div class="landing-content">
+      <h1 class="landing-title">Pop the balloons to unlock our memories 🎈</h1>
+      <p class="landing-subtitle">A little surprise, just for you</p>
+      <button class="start-btn" id="start-btn" onclick="startExperience()">
+        Begin Our Journey 💕
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══ Balloon Screen ═══ -->
+  <div class="screen hidden" id="balloon-screen">
+    <div class="balloon-arena">
+      <div class="balloon-header">
+        <p class="balloon-hint">Tap a balloon to reveal a memory 💭</p>
+        <p class="popped-counter" id="popped-counter">0 / 6 memories</p>
+      </div>
+      <!-- Balloons are created dynamically by script.js -->
+    </div>
+  </div>
+
+  <!-- ═══ Memory Popup ═══ -->
+  <div class="popup-overlay" id="popup-overlay">
+    <div class="popup-card">
+      <div class="popup-image-wrapper">
+        <img class="popup-image" id="popup-image" src="" alt="Our memory" />
+        <div class="placeholder-img" id="popup-placeholder" style="display:none;">💖</div>
+        <div class="popup-image-overlay"></div>
+      </div>
+      <div class="popup-body">
+        <p class="popup-message" id="popup-message"></p>
+        <button class="popup-close-btn" onclick="closePopup()">Close ✨</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Proposal Screen ═══ -->
+  <div class="screen hidden" id="proposal-screen">
+    <div class="proposal-content">
+      <p class="proposal-pretext">From all our little moments…</p>
+      <h2 class="proposal-main">to forever together ❤️</h2>
+      <p class="proposal-question">Will you be my Valentine?</p>
+      <div class="proposal-buttons">
+        <button class="proposal-btn yes-btn" onclick="onYesClick()">YES 💖</button>
+        <button class="proposal-btn forever-btn" onclick="onYesClick()">FOREVER YES 😄</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Final Message Screen ═══ -->
+  <div class="screen hidden" id="final-screen">
+    <div class="final-bg-image"></div>
+    <div class="final-bg-overlay"></div>
+    <div class="final-content">
+      <div class="final-letter">
+        <p class="final-letter-line">I never knew what love truly meant,</p>
+        <p class="final-letter-line">until you walked into my world and colored it beautiful.</p>
+        <p class="final-letter-line">Every laugh we share, every silence we sit in,</p>
+        <p class="final-letter-line">every little fight and every warm hug (virtual 🥺 ) after 🤗…</p>
+        <p class="final-letter-line">makes me fall for you a little more each day.</p>
+        <p class="final-letter-line">&nbsp;</p>
+        <p class="final-letter-line">You are my favorite notification,</p>
+        <p class="final-letter-line">my happiest thought before I sleep,</p>
+        <p class="final-letter-line">and my first smile every morning.</p>
+        <p class="final-letter-line highlight">You make my world brighter every single day 💕</p>
+      </div>
+      <div class="final-divider"></div>
+      <h1 class="final-valentine">I Choose You, Today & Always</h1>
+      <span class="final-heart">❤️</span>
+      <p class="final-signature">Forever yours 🌹</p>
+    </div>
+  </div>
+
+  <!-- ═══ Background Music ═══ -->
+  <audio id="bg-music" preload="auto">
+    <source src="music/romantic.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ═══ Music Toggle Button ═══ -->
+  <button class="music-toggle" id="music-btn" title="Toggle Music">🎵</button>
+
+  <!-- ═══ Script ═══ -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
