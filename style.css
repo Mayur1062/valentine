@@ -1,0 +1,1354 @@
+/* ═══════════════════════════════════════════════════════
+   Valentine Balloon Website — Stylesheet
+   ═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────── */
+:root {
+    --pink: #ff9ecb;
+    --purple: #d8b4fe;
+    --deep-pink: #ff6ba6;
+    --glow-white: #fff5f9;
+    --dark-overlay: rgba(20, 0, 30, 0.6);
+    --glass-bg: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.25);
+    --balloon-red: #ff4d6d;
+    --balloon-pink: #ff85a1;
+    --balloon-purple: #c77dff;
+    --balloon-lavender: #e0aaff;
+    --balloon-rose: #ff758f;
+    --balloon-gold: #ffb703;
+}
+
+/* ── Reset & Base ─────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a0011 0%, #2d0033 30%, #1a0022 60%, #0d0015 100%);
+    color: white;
+    position: relative;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ── Animated Background ──────────────────────────────── */
+.bg-gradient {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(255, 158, 203, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(216, 180, 254, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(255, 107, 166, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #1a0011 0%, #2d0033 30%, #1a0022 60%, #0d0015 100%);
+    animation: bgPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes bgPulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.85;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ── Heart Particles ──────────────────────────────────── */
+.heart-particles {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.heart-particle {
+    position: absolute;
+    font-size: 14px;
+    opacity: 0;
+    animation: floatHeart linear infinite;
+    filter: blur(0.5px);
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.6;
+    }
+
+    90% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateY(-10vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* ── Screens ──────────────────────────────────────────── */
+.screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+}
+
+/* ── Landing Screen ───────────────────────────────────── */
+#landing-screen {
+    z-index: 15;
+}
+
+.landing-content {
+    text-align: center;
+    z-index: 20;
+    padding: 2rem;
+    animation: fadeInUp 1.5s ease;
+}
+
+.landing-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    background: linear-gradient(135deg, var(--pink), var(--purple), var(--deep-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 30px rgba(255, 158, 203, 0.4));
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.landing-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 1.5s ease 0.3s both;
+}
+
+.start-btn {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--deep-pink), var(--purple));
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow:
+        0 4px 25px rgba(255, 107, 166, 0.4),
+        0 0 60px rgba(255, 158, 203, 0.15);
+    animation: fadeInUp 1.5s ease 0.6s both, btnGlow 3s ease-in-out infinite;
+}
+
+.start-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow:
+        0 8px 40px rgba(255, 107, 166, 0.5),
+        0 0 80px rgba(255, 158, 203, 0.25);
+}
+
+.start-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+@keyframes btnGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 25px rgba(255, 107, 166, 0.4), 0 0 60px rgba(255, 158, 203, 0.15);
+    }
+
+    50% {
+        box-shadow: 0 4px 35px rgba(255, 107, 166, 0.6), 0 0 80px rgba(255, 158, 203, 0.3);
+    }
+}
+
+/* ── Balloon Arena ────────────────────────────────────── */
+#balloon-screen {
+    z-index: 10;
+}
+
+.balloon-arena {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.balloon-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem 1rem;
+    background: linear-gradient(to bottom, rgba(13, 0, 21, 0.5) 0%, transparent 100%);
+}
+
+.balloon-hint {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    animation: fadeInUp 1s ease;
+    text-shadow: 0 0 20px rgba(255, 158, 203, 0.3);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.popped-counter {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+    text-align: center;
+}
+
+/* ── Balloon Styling ──────────────────────────────────── */
+.balloon-wrapper {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s ease;
+    animation: floatBalloon 6s ease-in-out infinite;
+}
+
+.balloon-wrapper:hover {
+    transform: scale(1.12);
+    z-index: 15;
+}
+
+.balloon-wrapper:hover .balloon-body {
+    filter: brightness(1.2) drop-shadow(0 0 25px currentColor);
+}
+
+.balloon-body {
+    width: clamp(70px, 12vw, 110px);
+    height: clamp(90px, 15vw, 140px);
+    border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 0.3s ease, transform 0.3s ease;
+    box-shadow:
+        inset -15px -10px 30px rgba(0, 0, 0, 0.15),
+        inset 10px 10px 20px rgba(255, 255, 255, 0.25),
+        0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.balloon-body::before {
+    content: '';
+    position: absolute;
+    top: 18%;
+    left: 22%;
+    width: 25%;
+    height: 30%;
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: rotate(-30deg);
+}
+
+.balloon-knot {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 12px solid currentColor;
+}
+
+.balloon-string {
+    position: absolute;
+    bottom: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 65px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+    animation: stringWave 3s ease-in-out infinite;
+}
+
+@keyframes stringWave {
+
+    0%,
+    100% {
+        transform: translateX(-50%) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateX(-50%) rotate(2deg);
+    }
+}
+
+.balloon-emoji {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    z-index: 2;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* ── Balloon Float Animation ──────────────────────────── */
+@keyframes floatBalloon {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    33% {
+        transform: translateY(-18px) rotate(1deg);
+    }
+
+    66% {
+        transform: translateY(-8px) rotate(-1deg);
+    }
+}
+
+/* ── Balloon Pop ──────────────────────────────────────── */
+.balloon-wrapper.popping {
+    animation: popBalloon 0.5s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes popBalloon {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    30% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+/* Pop particles */
+.pop-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: popParticle 0.6s ease-out forwards;
+}
+
+@keyframes popParticle {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--px), var(--py)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* ── Popup Modal ──────────────────────────────────────── */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(10, 0, 20, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.popup-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 0;
+    max-width: 420px;
+    width: 90%;
+    overflow: hidden;
+    transform: scale(0.8) translateY(30px);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.4),
+        0 0 80px rgba(255, 158, 203, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.popup-overlay.active .popup-card {
+    transform: scale(1) translateY(0);
+}
+
+.popup-image-wrapper {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 158, 203, 0.15), rgba(216, 180, 254, 0.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+    transition: transform 0.5s ease;
+}
+
+.popup-card:hover .popup-image {
+    transform: scale(1.02);
+}
+
+.popup-image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+}
+
+.popup-body {
+    padding: 1.8rem 2rem 2rem;
+    text-align: center;
+}
+
+.popup-message {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+    color: white;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 20px rgba(255, 158, 203, 0.3);
+}
+
+.popup-close-btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.7rem 2rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.popup-close-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 158, 203, 0.2);
+}
+
+/* ── Proposal Screen ──────────────────────────────────── */
+#proposal-screen {
+    z-index: 50;
+    background: radial-gradient(ellipse at center, rgba(45, 0, 51, 0.95) 0%, rgba(13, 0, 21, 0.98) 100%);
+}
+
+.proposal-content {
+    text-align: center;
+    padding: 2rem;
+    animation: fadeInUp 1.2s ease;
+}
+
+.proposal-pretext {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease 0.3s both;
+}
+
+.proposal-main {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2rem, 6vw, 4rem);
+    background: linear-gradient(135deg, var(--pink), var(--purple), var(--deep-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(255, 158, 203, 0.4));
+    margin-bottom: 0.5rem;
+    animation: fadeInUp 1s ease 0.5s both, glowPulse 3s ease-in-out infinite;
+    line-height: 1.4;
+}
+
+.proposal-question {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+    color: white;
+    margin: 2rem 0 2.5rem;
+    animation: fadeInUp 1s ease 0.8s both;
+    text-shadow: 0 0 30px rgba(255, 158, 203, 0.4);
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 40px rgba(255, 158, 203, 0.4));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 60px rgba(255, 158, 203, 0.6));
+    }
+}
+
+.proposal-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 1.1s both;
+}
+
+.proposal-btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 600;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.proposal-btn.yes-btn {
+    background: linear-gradient(135deg, var(--deep-pink), #ff3d7f);
+    color: white;
+    box-shadow: 0 4px 25px rgba(255, 61, 127, 0.4);
+}
+
+.proposal-btn.yes-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 40px rgba(255, 61, 127, 0.6);
+}
+
+.proposal-btn.forever-btn {
+    background: linear-gradient(135deg, var(--purple), #bf5af2);
+    color: white;
+    box-shadow: 0 4px 25px rgba(191, 90, 242, 0.4);
+}
+
+.proposal-btn.forever-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 40px rgba(191, 90, 242, 0.6);
+}
+
+/* ── Final Message Screen ─────────────────────────────── */
+#final-screen {
+    z-index: 60;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
+    inset: 0;
+    /* Override the parent .screen flex centering so content can scroll */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.final-bg-image {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image: url('images/final-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    animation: fadeIn 2s ease 0.5s forwards;
+    pointer-events: none;
+}
+
+.final-bg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse at center, rgba(45, 0, 51, 0.75) 0%, rgba(13, 0, 21, 0.88) 100%);
+    pointer-events: none;
+}
+
+.final-content {
+    text-align: center;
+    padding: 15vh 2rem 4rem;
+    max-width: 650px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.final-letter {
+    margin-bottom: 2.5rem;
+}
+
+.final-letter-line {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.05rem, 2.8vw, 1.45rem);
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.9;
+    margin-bottom: 0.3rem;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.final-letter-line:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.final-letter-line:nth-child(2) {
+    animation-delay: 0.7s;
+}
+
+.final-letter-line:nth-child(3) {
+    animation-delay: 1.1s;
+}
+
+.final-letter-line:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+.final-letter-line:nth-child(5) {
+    animation-delay: 1.9s;
+}
+
+.final-letter-line:nth-child(6) {
+    animation-delay: 2.3s;
+}
+
+.final-letter-line:nth-child(7) {
+    animation-delay: 2.7s;
+}
+
+.final-letter-line:nth-child(8) {
+    animation-delay: 3.1s;
+}
+
+.final-letter-line:nth-child(9) {
+    animation-delay: 3.5s;
+}
+
+.final-letter-line:nth-child(10) {
+    animation-delay: 3.9s;
+}
+
+.final-letter-line.highlight {
+    color: var(--pink);
+    font-size: clamp(1.15rem, 3vw, 1.6rem);
+    margin-top: 0.5rem;
+    text-shadow: 0 0 20px rgba(255, 158, 203, 0.3);
+}
+
+.final-divider {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--pink), transparent);
+    margin: 1.5rem auto;
+    opacity: 0;
+    animation: fadeIn 1s ease 4.2s forwards;
+}
+
+.final-valentine {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.2rem, 7vw, 4.5rem);
+    background: linear-gradient(135deg, var(--pink), #ff3d7f, var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 50px rgba(255, 158, 203, 0.5));
+    opacity: 0;
+    animation: fadeInUp 1.2s ease 4.5s forwards, glowPulse 3s ease-in-out 4.5s infinite;
+    line-height: 1.3;
+}
+
+.final-heart {
+    font-size: clamp(2.5rem, 7vw, 4rem);
+    display: block;
+    margin-top: 1rem;
+    opacity: 0;
+    animation: heartBeat 1.5s ease-in-out 5s infinite, fadeInUp 1s ease 5s forwards;
+}
+
+.final-signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 5.5s forwards;
+}
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.15);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.1);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+}
+
+/* ── Confetti ─────────────────────────────────────────── */
+.confetti-container {
+    position: fixed;
+    inset: 0;
+    z-index: 45;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -20px;
+    width: 10px;
+    height: 10px;
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* ── Heart Explosion ──────────────────────────────────── */
+.heart-explosion {
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.explosion-heart {
+    position: absolute;
+    font-size: 2rem;
+    animation: explodeHeart ease-out forwards;
+}
+
+@keyframes explodeHeart {
+    0% {
+        transform: translate(0, 0) scale(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--ex), var(--ey)) scale(1.5) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ── Music Toggle Button ──────────────────────────────── */
+.music-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 200;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 6px 30px rgba(255, 158, 203, 0.3);
+}
+
+.music-toggle.playing {
+    animation: musicPulse 2s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 4px 30px rgba(255, 158, 203, 0.4), 0 0 40px rgba(255, 158, 203, 0.15);
+    }
+}
+
+/* ── Utility Animations ───────────────────────────────── */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ── Sparkle Effect (for landing) ─────────────────────── */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    animation: sparkle 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+}
+
+/* ── SVG Placeholder Images (inline for memories) ─────── */
+.placeholder-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    background: linear-gradient(135deg, rgba(255, 158, 203, 0.3), rgba(216, 180, 254, 0.3));
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .landing-title {
+        font-size: clamp(1.8rem, 5.5vw, 3rem);
+        padding: 0 1rem;
+    }
+
+    .landing-subtitle {
+        font-size: clamp(0.8rem, 2.2vw, 1.1rem);
+        margin-bottom: 2rem;
+    }
+
+    .start-btn {
+        font-size: clamp(1rem, 2.8vw, 1.4rem);
+        padding: 0.9rem 2.5rem;
+    }
+
+    .balloon-header {
+        padding: 1.2rem 0.8rem 0.8rem;
+    }
+
+    .balloon-hint {
+        font-size: clamp(1rem, 2.8vw, 1.4rem);
+    }
+
+    .balloon-body {
+        width: 65px;
+        height: 85px;
+    }
+
+    .balloon-emoji {
+        font-size: 1.5rem;
+    }
+
+    .balloon-string {
+        height: 50px;
+        bottom: -55px;
+    }
+
+    .popup-card {
+        width: 92%;
+        max-width: 380px;
+    }
+
+    .popup-image-wrapper {
+        height: 200px;
+    }
+
+    .popup-body {
+        padding: 1.4rem 1.5rem 1.6rem;
+    }
+
+    .popup-message {
+        font-size: clamp(1.1rem, 3vw, 1.5rem);
+    }
+
+    .popup-close-btn {
+        padding: 0.8rem 2rem;
+        min-height: 48px;
+        font-size: 1rem;
+    }
+
+    .proposal-content {
+        padding: 1.5rem;
+    }
+
+    .proposal-pretext {
+        font-size: clamp(1rem, 2.8vw, 1.4rem);
+    }
+
+    .proposal-main {
+        font-size: clamp(1.8rem, 5vw, 3rem);
+    }
+
+    .proposal-question {
+        font-size: clamp(1.3rem, 4vw, 2.2rem);
+        margin: 1.5rem 0 2rem;
+    }
+
+    .proposal-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .proposal-btn {
+        width: 85%;
+        max-width: 300px;
+        min-height: 52px;
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+    }
+
+    .final-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .final-letter-line {
+        font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+        line-height: 1.7;
+    }
+
+    .final-valentine {
+        font-size: clamp(2rem, 6.5vw, 3.5rem);
+    }
+
+    .final-heart {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+
+    .music-toggle {
+        bottom: 16px;
+        right: 16px;
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .landing-title {
+        font-size: clamp(1.5rem, 6vw, 2.2rem);
+        line-height: 1.3;
+    }
+
+    .landing-subtitle {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+
+    .start-btn {
+        padding: 0.85rem 2rem;
+        font-size: 1.1rem;
+    }
+
+    .balloon-header {
+        padding: 1rem 0.5rem 0.6rem;
+    }
+
+    .balloon-hint {
+        font-size: 1rem;
+    }
+
+    .popped-counter {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+    }
+
+    .balloon-body {
+        width: 52px;
+        height: 68px;
+    }
+
+    .balloon-emoji {
+        font-size: 1.2rem;
+    }
+
+    .balloon-string {
+        height: 40px;
+        bottom: -45px;
+    }
+
+    .balloon-knot {
+        border-left-width: 6px;
+        border-right-width: 6px;
+        border-top-width: 9px;
+        bottom: -6px;
+    }
+
+    .popup-card {
+        width: 94%;
+        border-radius: 18px;
+    }
+
+    .popup-image-wrapper {
+        height: 170px;
+    }
+
+    .popup-body {
+        padding: 1.2rem 1.2rem 1.4rem;
+    }
+
+    .popup-message {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .proposal-main {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
+
+    .proposal-question {
+        font-size: clamp(1.2rem, 5vw, 1.8rem);
+        margin: 1.2rem 0 1.5rem;
+    }
+
+    .proposal-btn {
+        padding: 0.9rem 2rem;
+        min-height: 50px;
+        width: 90%;
+    }
+
+    .final-content {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .final-letter-line {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .final-valentine {
+        font-size: clamp(1.8rem, 7vw, 2.8rem);
+    }
+
+    .final-heart {
+        font-size: 2rem;
+    }
+
+    .final-signature {
+        font-size: 1.2rem;
+    }
+}
+
+/* Very Small Mobile (iPhone SE, etc) */
+@media (max-width: 375px) {
+    .balloon-body {
+        width: 46px;
+        height: 60px;
+    }
+
+    .balloon-emoji {
+        font-size: 1rem;
+    }
+
+    .balloon-string {
+        height: 32px;
+        bottom: -37px;
+    }
+
+    .proposal-content {
+        padding: 1rem;
+    }
+
+    .proposal-main {
+        font-size: 1.5rem;
+    }
+
+    .final-letter-line {
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .landing-title {
+        font-size: 1.8rem;
+    }
+
+    .landing-subtitle {
+        margin-bottom: 1rem;
+    }
+
+    .balloon-body {
+        width: 50px;
+        height: 65px;
+    }
+
+    .balloon-string {
+        height: 30px;
+        bottom: -35px;
+    }
+
+    .balloon-header {
+        padding: 0.5rem 1rem 0.3rem;
+    }
+
+    .proposal-content {
+        padding: 1rem;
+    }
+
+    .proposal-main {
+        font-size: 2rem;
+    }
+
+    .proposal-question {
+        margin: 0.8rem 0 1rem;
+        font-size: 1.3rem;
+    }
+
+    .proposal-buttons {
+        flex-direction: row;
+    }
+
+    .final-content {
+        padding: 1rem;
+    }
+
+    .final-letter-line {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .final-valentine {
+        font-size: 2rem;
+    }
+}
+
+/* Safe area insets for notched phones */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .music-toggle {
+        bottom: calc(16px + env(safe-area-inset-bottom));
+        right: calc(16px + env(safe-area-inset-right));
+    }
+
+    .final-content {
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+    }
+}
+
+/* Touch device improvements */
+@media (hover: none) and (pointer: coarse) {
+    .balloon-wrapper {
+        /* Larger touch target */
+        padding: 10px;
+        margin: -10px;
+    }
+
+    .balloon-wrapper:hover {
+        transform: none;
+    }
+
+    .balloon-wrapper:active {
+        transform: scale(1.1);
+    }
+
+    .balloon-wrapper:hover .balloon-body {
+        filter: none;
+    }
+
+    .balloon-wrapper:active .balloon-body {
+        filter: brightness(1.2) drop-shadow(0 0 20px currentColor);
+    }
+
+    .popup-close-btn:hover {
+        transform: none;
+    }
+
+    .popup-close-btn:active {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(0.97);
+    }
+
+    .start-btn:hover {
+        transform: none;
+    }
+
+    .start-btn:active {
+        transform: scale(0.96);
+    }
+
+    .proposal-btn:hover {
+        transform: none;
+    }
+
+    .proposal-btn:active {
+        transform: scale(0.96);
+    }
+
+    /* Reduce particles for performance */
+    .heart-particle:nth-child(n+12) {
+        display: none;
+    }
+
+    .sparkle:nth-child(n+15) {
+        display: none;
+    }
+}
+
+/* ── Preloader ────────────────────────────────────────── */
+.preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg, #1a0011, #0d0015);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 0.8s ease;
+}
+
+.preloader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.preloader-heart {
+    font-size: 3rem;
+    animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+.preloader-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5rem;
+    color: var(--pink);
+    margin-top: 1rem;
+    opacity: 0.7;
+}
